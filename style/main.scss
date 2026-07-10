@@ -1,0 +1,131 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bloggersanslight";
+  font-size: 18px;
+  color: #2e2828cf;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 7px;
+}
+
+.main-container {
+  display: flex;
+  margin: auto;
+  margin-top: 280px;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding: 40px;
+  border-radius: 16px;
+  width: 400px;
+}
+
+.green-container {
+  background: linear-gradient(135deg, #435c47 0%, #39413a 100%);
+}
+
+.green-container > .glass-button {
+  color: #1d811d;
+}
+
+.orange-container {
+  background: linear-gradient(135deg, #4d2c02 0%, #301e06 100%);
+}
+
+.orange-container > .glass-button {
+  color: #d87b10;
+}
+
+.form-container > p {
+  color: #fff;
+}
+
+.warning-text {
+  font-size: 14px;
+  color: #fa3a3a !important;
+}
+
+.glass-input {
+  flex: 1;
+  padding: 14px 20px;
+  font-size: 16px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #fff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+}
+
+.glass-button {
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.glass-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.glass-button:active {
+  transform: translateY(0);
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #68ddec;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
