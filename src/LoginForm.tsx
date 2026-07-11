@@ -24,6 +24,7 @@ export function LoginForm({auth}) {
         console.log(`sending ${email} ${password}`)
         setShowLoader(true);
         setIncorrectCreds(false);
+        setErrorText('');
 
         try {
             const res = await signInWithEmailAndPassword(
@@ -34,12 +35,30 @@ export function LoginForm({auth}) {
 
             console.log(res);
             res && setLogin(true);
-        } catch(e) {
+        } catch(errorText) {
             setIncorrectCreds(true);
-            console.log(e);
+            setErrorText(errorsParse(errorText as string))
         } finally {
             setShowLoader(false);
         }
+    }
+
+    /** ошибки при логине */
+    const [errorText, setErrorText] = useState('');
+    const errorsParse = (errorText: string) => {
+        const errors = {
+            'invalid-email': 'проверьте правильность почты',
+            'invalid-credential': 'неправильная почта или пароль',
+            'network-request-failed': 'сервер недоступен, попробуйте позже'
+        }
+
+        for (const [key, value] of Object.entries(errors)) {
+            if (errorText.toString().includes(key)) {
+                return value; 
+            }
+        }
+
+        return 'ошибка авторизации, попробуйте позже';
     }
 
     /** разлогин */
@@ -64,7 +83,7 @@ export function LoginForm({auth}) {
                         <div className="loader"></div>;
                     </> : <>
                         <p>Войти в сервис</p>
-                        { incorrectCreds && <p className='warning-text'>Неправильная почта или пароль</p> }
+                        { incorrectCreds && errorText && <p className='warning-text'>{ errorText }</p> }
                         <input 
                             type="text" 
                             className="glass-input" 

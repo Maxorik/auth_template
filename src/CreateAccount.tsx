@@ -24,6 +24,7 @@ export function CreateAccountForm({auth}) {
         console.log(`sending ${email} ${password}`)
         setShowLoader(true);
         setIncorrectCreds(false);
+        setErrorText('');
 
         try {
             const res = await createUserWithEmailAndPassword(
@@ -34,13 +35,31 @@ export function CreateAccountForm({auth}) {
 
             console.log(res);
             res && setIsCreated(true);
-        } catch(e) {
+        } catch(errorText) {
             setIncorrectCreds(true);
-            console.log(e);
+            setErrorText(errorsParse(errorText as string))
         } finally {
             setShowLoader(false);
         }
     }
+
+    /** ошибки при регистрации */
+        const [errorText, setErrorText] = useState('');
+        const errorsParse = (errorText: string) => {
+            const errors = {
+                'invalid-email': 'проверьте правильность почты',
+                'weak-password': 'пароль должен содержать минимум 6 символов',
+                'email-already-in-use': 'эта почта уже занята'
+            }
+    
+            for (const [key, value] of Object.entries(errors)) {
+                if (errorText.toString().includes(key)) {
+                    return value; 
+                }
+            }
+    
+            return 'не удалось зарегистрироваться, попробуйте позже';
+        }
 
     /** вернуться на форму создания */
     const backToCreate = async() => {
@@ -61,7 +80,7 @@ export function CreateAccountForm({auth}) {
                         <div className="loader"></div>;
                     </> : <>
                         <p>Зарегистрироваться</p>
-                        { incorrectCreds && <p className='warning-text'>Не удалось зарегистрироваться - проверьте данные</p> }
+                        { incorrectCreds && errorText && <p className='warning-text'>{ errorText }</p> }
                         <input 
                             type="text" 
                             className="glass-input" 
