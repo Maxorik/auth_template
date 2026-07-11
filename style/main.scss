@@ -28,6 +28,12 @@ button {
   padding: 7px;
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: auto;
+  background: #b8b8b8;
+}
+
 .main-container {
   display: flex;
   margin: auto;
@@ -122,6 +128,15 @@ button {
 
 .glass-button:active {
   transform: translateY(0);
+}
+
+button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+button:disabled:active {
+  transform: none;
 }
 
 .secondary-button {

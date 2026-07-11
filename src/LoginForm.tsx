@@ -114,12 +114,20 @@ export function LoginForm({auth}) {
                             onChange={editPassword}
                         />}
                         {
-                            forgotPass ? <button 
-                                className="glass-button" 
-                                onClick={discardPassword}
-                            >
-                                Сброс пароля
-                            </button> : <div className='buttons-container'>
+                            forgotPass ? <div className='buttons-container'>
+                                <button 
+                                    className="glass-button" 
+                                    onClick={discardPassword}
+                                >
+                                    Сброс пароля
+                                </button>
+                                <button 
+                                    className="glass-button" 
+                                    onClick={()=>setForgotPass(false)}
+                                >
+                                    Назад
+                                </button>
+                            </div> : <div className='buttons-container'>
                                 <button 
                                     className="glass-button" 
                                     onClick={sendAuth}
