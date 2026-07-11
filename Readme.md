@@ -1,13 +1,17 @@
 Создание нового проекта:
 
-1. Открыть [Firebase](https://firebase.google.com/), перейти в Firebase Console и создать новый проект.
-2. Получить конфиг для соединения и скопировать его в src/firebaseConfig.ts 
-2.1 Если проект уже создан, скопировать его конфиг из Settings -> General -> Your apps
-3. Перейти в Authentication -> Sign in method и включить нужные методы
-3.1 (опционально) создать пользователя в Authentication -> Users -> Add user для теста авторизации
+* Открыть [Firebase](https://firebase.google.com/), перейти в Firebase Console и создать новый проект.
+
+* Получить конфиг для соединения и скопировать его в src/firebaseConfig.ts
+  * Если проект уже создан, скопировать его конфиг из Settings -> General -> Your apps
+ 
+* Перейти в Authentication -> Sign in method и включить нужные методы
+  * (опционально) создать пользователя в Authentication -> Users -> Add user для теста авторизации
 
 TODO:
-1. Стили bootstrap
-2. Сброс пароля - шаблон письма и ссылка на сброс
-3. Google auth
-4. Конфиг ненужный и github pages
+- [*] Сброс пароля
+- [*] Такая почта уже занята, неправильная почта, слабый пароль (менее 6 символов)
+- [ ] Стили bootstrap
+- [ ] Сброс пароля - шаблон письма и ссылка на сброс
+- [ ] Google auth
+- [ ] Конфиг ненужный и github pages
