@@ -47,6 +47,12 @@ button {
   width: 400px;
 }
 
+.buttons-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .green-container {
   background: linear-gradient(135deg, #435c47 0%, #39413a 100%);
 }
@@ -64,6 +70,7 @@ button {
 }
 
 .form-container > p {
+  text-align: center;
   color: #fff;
 }
 
@@ -115,6 +122,13 @@ button {
 
 .glass-button:active {
   transform: translateY(0);
+}
+
+.secondary-button {
+  padding: 0;
+  font-size: 14px;
+  background: transparent;
+  color: #fff;
 }
 
 .loader {

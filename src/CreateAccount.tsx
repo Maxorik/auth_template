@@ -84,7 +84,7 @@ export function CreateAccountForm({auth}) {
                         <input 
                             type="text" 
                             className="glass-input" 
-                            placeholder="Почта"
+                            placeholder="Электронная почта"
                             value={email}
                             onChange={editEmail}
                         />
