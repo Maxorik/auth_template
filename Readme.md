@@ -7,10 +7,16 @@
  
 * Перейти в Authentication -> Sign in method и включить нужные методы
   * (опционально) создать пользователя в Authentication -> Users -> Add user для теста авторизации
-
+---
+Добавление аутентификации с Google:
+* Firebase Console -> Authentication -> Sign-in method -> Google
+* Указать свою почту в Support email
+* Перейти в Authentication -> Settings -> Authorized domains и добавить домен, где и будет использоваться аутентификация 
+---
 TODO:
 - [x] Сброс пароля
 - [x] Такая почта уже занята, неправильная почта, слабый пароль (менее 6 символов)
 - [ ] Сброс пароля - шаблон письма и ссылка на сброс
-- [ ] Google auth
+- [x] Google auth
 - [x] Конфиг ненужный и github pages
+- [ ] Привязка данных к пользователю

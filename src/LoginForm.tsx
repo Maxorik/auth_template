@@ -1,7 +1,11 @@
 import React, { useState,  ChangeEvent} from 'react';
 import '../style/main.scss'
 
+// обычная авторищация
 import { signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth'
+// google авторизация
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+const provider = new GoogleAuthProvider();
 
 /** форма авторизации */
 export function LoginForm({auth}) {
@@ -39,6 +43,31 @@ export function LoginForm({auth}) {
 
             console.log(res);
             res && setLogin(true);
+        } catch(errorText) {
+            setIncorrectCreds(true);
+            setErrorText(errorsParse(errorText as string))
+        } finally {
+            setShowLoader(false);
+        }
+    }
+
+    /** логин через Google */
+    const sendGoogleAuth = async() => {
+        console.log(`sending ${email} ${password}`)
+        setLoaderText('Вход...');
+        setShowLoader(true);
+        setIncorrectCreds(false);
+        setErrorText('');
+
+        try {
+            const res = await signInWithPopup(auth, provider);
+
+            console.log(res);
+
+            if (res) {
+                setEmail(res.user?.email || 'user')
+                setLogin(true);
+            }
         } catch(errorText) {
             setIncorrectCreds(true);
             setErrorText(errorsParse(errorText as string))
@@ -127,21 +156,30 @@ export function LoginForm({auth}) {
                                 >
                                     Назад
                                 </button>
-                            </div> : <div className='buttons-container'>
+                            </div> :
+                            <> 
+                                <div className='buttons-container'>
+                                    <button 
+                                        className="glass-button" 
+                                        onClick={sendAuth}
+                                        disabled={getLoginDisabled}
+                                    >
+                                        Войти
+                                    </button>
+                                    <button 
+                                        className="glass-button secondary-button" 
+                                        onClick={()=>setForgotPass(true)}
+                                    >
+                                        Забыли пароль?
+                                    </button>
+                                </div>
                                 <button 
-                                    className="glass-button" 
-                                    onClick={sendAuth}
-                                    disabled={getLoginDisabled}
+                                    className="glass-button google-button" 
+                                    onClick={sendGoogleAuth}
                                 >
-                                    Войти
+                                    Continue with Google
                                 </button>
-                                <button 
-                                    className="glass-button secondary-button" 
-                                    onClick={()=>setForgotPass(true)}
-                                >
-                                    Забыли пароль?
-                                </button>
-                            </div>
+                            </>
                         }
                     </> }
                 </> : <>
